@@ -16,6 +16,12 @@ class Pages extends Controller{
       redirect('parkings');
     }
 
+    if(isAdmin()){
+      // die(isAdmin());
+      redirect('exports');
+    }
+
+
     $data = [
       'title' => 'CarparkApp', 
       'description' => 'Simple software solution to enhance car park usage.'

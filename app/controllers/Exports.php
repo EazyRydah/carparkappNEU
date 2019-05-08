@@ -4,7 +4,14 @@ class Exports extends Controller {
 
   public function __construct(){
 
+     // If not logged id
+     if(!isAdmin()){
+      redirect('parkings');
+    }
 
+
+      // Load parking model
+      $this->exportModel = $this->model('Export');
 
   }
 
@@ -20,6 +27,14 @@ class Exports extends Controller {
 
    // die(print_r($data));
    $this->view('exports/index', $data);
+  }
+
+  public function downloadCSV() {
+    echo ' DOWNLOAD CSV';
+  }
+
+  public function sendMail() {
+    echo ' SENDING MAIL...';
   }
 
 }

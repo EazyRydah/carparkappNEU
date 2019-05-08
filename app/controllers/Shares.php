@@ -8,6 +8,12 @@ class Shares extends Controller {
       redirect('users/login');
     }
 
+    if(isAdmin()){
+      // die(isAdmin());
+      redirect('exports');
+    }
+
+
   // Check models folder for file called Share.php
   $this->shareModel = $this->model('Share');
 
