@@ -2,12 +2,18 @@
 
 class Parkings extends Controller {
 
-
   
   public function __construct(){
+
+
     // If not logged id
     if(!isLoggedIn()){
       redirect('users/login');
+    }
+
+    if(isAdmin()){
+      // die(isAdmin());
+      redirect('exports');
     }
 
     // Load parking model

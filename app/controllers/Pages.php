@@ -7,7 +7,12 @@ class Pages extends Controller{
   public function index() {
 
     // Redirect to parkings overview if is logged in
-    if (isLoggedIn()) {
+    // if (isLoggedIn() && IsAdmin()) {
+    //   redirect('exports');
+    // }
+
+   
+    if(isLoggedIn()) {
       redirect('parkings');
     }
 

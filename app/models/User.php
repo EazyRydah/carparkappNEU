@@ -36,7 +36,7 @@ class User {
     $this->db->bind(':email', $email);
 
     $row = $this->db->single();
-
+    // die(var_dump($row));
     $hashed_password = $row->password;
 
     if (password_verify($password,$hashed_password)) {

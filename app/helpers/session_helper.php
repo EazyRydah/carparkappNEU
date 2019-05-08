@@ -36,6 +36,14 @@
     }
   }
 
+  function isAdmin(){ 
+  if ($_SESSION['user_role'] == 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+}
+
   function calculateTimestampDifference($timestamp2, $timestamp1){
     // return date('d', strtotime($timestamp2) - strtotime($timestamp1));
     return abs (strtotime($timestamp2) - strtotime($timestamp1)) / 86400;

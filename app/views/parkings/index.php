@@ -24,8 +24,6 @@
         <i class="fa fa-pencil"></i> Share 
       </a>
       </div>
-     
-     
     </div>
   <?php endforeach; ?>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
