@@ -34,7 +34,19 @@ class Exports extends Controller {
   }
 
   public function sendMail($exportProfile, $email) {
-    die($exportProfile . $email);    
+
+
+    // create timestamp from todays date, as refrence to fetch only active shares 
+    // That cant be touched by user, and pass them to view
+    $timestamp = strtotime('+2 Days');
+    $todayCompare = date('Y-m-d', $timestamp);
+
+    $relevantData = $this->exportModel->getRelevantData($todayCompare, $exportProfile);
+
+    echo $this->exportModel->createCSV($relevantData, $exportProfile);
+    
+    // die($CSV);
+    // echo $this->exportModel->createExportData($todayCompare, $exportProfile);
 
     
     }

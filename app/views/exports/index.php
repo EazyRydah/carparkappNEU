@@ -37,11 +37,13 @@
           <input type="email" class="form-control" id="email-input" placeholder="<? echo $_SESSION['user_email'] ;?>">
           <div class="input-group-append">
             <div class="input-group-text">
-              <a id="link-exports-sendMail" href="#"> Send Now</a>
+            <!-- SO LÄUFT DAS NICHT! ERSTMAL DIE DATEN IN DEN VIEW SCHUBSEN UND DANN DIE FUNKTIOEN ÜBER DIE LINKS ANSTEURN! 
+            ATM LÄÄUFT ALLES ÜBER AJAX/PHP _ ALSO AJAX RUFT DIE FUNKTION IM HINTERGRUND AUF UND SO KANN DER CSV DOWNLOAD NICHT STATTFINDEN GLAUBE ICH-->
+              <a id="link-exports-sendMail" href="<?php echo URLROOT; ?>/exports/sendMail/">Send Now</a>
             </div>
           </div>
         </div>
-
+ 
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">

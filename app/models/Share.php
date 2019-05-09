@@ -41,10 +41,11 @@
 
     public function CSVDump(){
       
-      $allData = "";
+      
       $this->db->query('SELECT * FROM shares');
       $results = $this->db->resultSet();
 
+      $allData = "";
       foreach ($results as $shareObject) {
         $allData .= $shareObject->id . ',' . $shareObject->share_start . ',' . $shareObject->share_end . "\n";
       }
@@ -52,7 +53,7 @@
       $response = "data:text/csv;charset=utf-8,id,share_start,share_end\n";
       $response .= $allData;
 
-      $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
+      // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
 
       // die($echo);
 
