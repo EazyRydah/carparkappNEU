@@ -34,7 +34,7 @@
               <span class="ml-2">E-Mail: </span>
             </div>
           </div>
-          <input type="text" class="form-control" placeholder="<? echo $_SESSION['user_email'] ;?>">
+          <input type="email" class="form-control" id="email-input" placeholder="<? echo $_SESSION['user_email'] ;?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <a id="link-exports-sendMail" href="#"> Send Now</a>

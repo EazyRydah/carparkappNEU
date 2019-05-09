@@ -29,14 +29,19 @@ class Exports extends Controller {
    $this->view('exports/index', $data);
   }
 
-  public function downloadCSV() {
-    die('PETER PAN!');
+  public function downloadCSV($exportProfile) {
+    // echo $exportProfile;
   }
 
-  public function sendMail($exportProfileText) {
-    if (isset($_GET[''])) {
-      # code...
+  public function sendMail($exportProfile, $email) {
+    die($exportProfile . $email);    
+
+    
     }
+
+    
+
+
+
   }
 
-}
