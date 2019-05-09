@@ -30,7 +30,7 @@ class Exports extends Controller {
   }
 
   public function downloadCSV() {
-    echo ' dkjaskldj lkajlkdjlk ajslkdjl ajsdljalkjdlkja slkjdlkasj CSV';
+    die('PETER PAN!');
   }
 
   public function sendMail($exportProfileText) {
