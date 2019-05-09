@@ -16,10 +16,10 @@ class Pages extends Controller{
       redirect('parkings');
     }
 
-    if(isAdmin()){
-      // die(isAdmin());
-      redirect('exports');
-    }
+    // if(isAdmin()){
+    //   // die(isAdmin());
+    //   redirect('exports');
+    // }
 
 
     $data = [

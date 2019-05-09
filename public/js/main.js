@@ -1,15 +1,21 @@
 
+//  console.log(export_profile);
 
- var shareDatesStrings = [];
- var shareDatesObjects = [];
- var sharePeriods = [];
- var dates = [];
+
+
+
+var shareDatesStrings = [];
+var shareDatesObjects = [];
+var sharePeriods = [];
+var dates = [];
+
 
  var parking_id = document.querySelector('#datepicker_parking_id').value;
 
- document.addEventListener("DOMContentLoaded", function(event) {
 
-  // console.log(sharePeriods);
+ 
+ 
+ document.addEventListener("DOMContentLoaded", function(e) {
 
     // Get ServerDataJSONString using Fetch API
     fetch(url + '/shares/loadAjaxData/' + parking_id)
@@ -32,63 +38,10 @@
       .catch(function(err){
         console.log(err);
       });
-
-
-      // fetch(url + '/parkings/loadAjaxDataObject/' + parking_id)
-      // .then(function(res){
-      //   return res.text();
-      // })
-      // .then(function(data){
-
-      //   var serverData = JSON.parse(data);
-
-      //   serverData.forEach(function(data) {
-      //     // Push to Array
-      //     shareDatesObjects.push(data);
-      //   })
-
-      //   shareDatesObjects.forEach(function(data){
-      //       var sharePeriod = [];
-      //       startDate = new Date(data.share_start);
-      //       // currentDate = startDate;
-      //       endDate = new Date(data.share_end);
-
-      //       console.log('start: ' + startDate);
-      //       console.log('end: ' + endDate);
-
-      //       sharePeriod.push(startDate + endDate);
-
-      //       sharePeriods.push(sharePeriod);
-
-      //   })
-
-      //   console.log(sharePeriods);
-
-      // })
-      // .catch(function(err){
-      //   console.log(err);
-      // });
-
       
 });
 
 
-// function createSharePeriod(startDate, endDate){
-
-//   // let sharePeriod = [];
-//   startDate = new Date(startDate);
-//   // currentDate = startDate;
-//   endDate = new Date(endDate);
-
-//   for(let index = 0;  startDate < endDate; index=+24) {
-
-//    return startDate.setHours(index);
-//     // dates.push(startDate);
-    
-//   }
-
-
-// };
 
 
 

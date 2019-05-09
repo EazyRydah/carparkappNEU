@@ -21,10 +21,10 @@
               <span class="ml-2">Choose Export Profile: </span>
             </div>
           </div>
-          <select class="form-control">
+          <select class="form-control" id="select-export-profile">
             <option value="">-</option>
-            <option value="">Parking Service</option>
-            <option value="">Customer Service</option>
+            <option value="Parking Service">Parking Service</option>
+            <option value="Customer Service">Customer Service</option>
           </select>
       </div>
 
@@ -37,7 +37,7 @@
           <input type="text" class="form-control" placeholder="<? echo $_SESSION['user_email'] ;?>">
           <div class="input-group-append">
             <div class="input-group-text">
-              <a href="<?php echo URLROOT; ?>/exports/sendMail/"> Send Now</a>
+              <a id="link-exports-sendMail" href="#"> Send Now</a>
             </div>
           </div>
         </div>

@@ -30,11 +30,13 @@ class Exports extends Controller {
   }
 
   public function downloadCSV() {
-    echo ' DOWNLOAD CSV';
+    echo ' dkjaskldj lkajlkdjlk ajslkdjl ajsdljalkjdlkja slkjdlkasj CSV';
   }
 
-  public function sendMail() {
-    echo ' SENDING MAIL...';
+  public function sendMail($exportProfileText) {
+    if (isset($_GET[''])) {
+      # code...
+    }
   }
 
 }
