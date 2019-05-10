@@ -1,5 +1,6 @@
 <?php
 class User {
+  
   // Create database var
   private $db;
 

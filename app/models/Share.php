@@ -18,29 +18,6 @@
       return $results;
     }
 
-
-    // public function CSVDump(){
-      
-    //   $this->db->query('SELECT * FROM shares');
-    //   $results = $this->db->resultSet();
-
-    //   $allData = "";
-    //   foreach ($results as $shareObject) {
-    //     $allData .= $shareObject->id . ',' . $shareObject->share_start . ',' . $shareObject->share_end . "\n";
-    //   }
-
-    //   $response = "data:text/csv;charset=utf-8,id,share_start,share_end\n";
-    //   $response .= $allData;
-
-    //   // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
-
-    //   $handle = fopen('internData.csv', 'w');
-    //   fwrite($handle, $response);
-    //   fclose($handle);
-       
-    // }
-
-
     public function getParkingById($parking_id) {
       $this->db->query('SELECT * FROM parkings WHERE id = :id');
       $this->db->bind(':id', $parking_id);
@@ -76,11 +53,9 @@
       // 2. Getting all upcoming shares, related to this parking
       $shares = $this->getShares($parking_id);
   
-       $sharePeriodDatesJSON = json_encode($shares);
+      $sharePeriodDatesJSON = json_encode($shares);
 
-       // die(var_dump($sharePeriodDatesJSON));
-
-       return $sharePeriodDatesJSON;
+      return $sharePeriodDatesJSON;
  }
 
     public function getShareByShareId($share_id) {
@@ -103,91 +78,7 @@
     
     }
 
-    // Find parking by contract id
-      // public function findParkingByContractId($contract_id) {
-        
-      //   $this->db->query('SELECT * FROM parkings WHERE contract_id = :contract_id');
-      //   // Bind methodinput from controller, to named parameter from SQL query
-      //   $this->db->bind(':contract_id', $contract_id);
-
-      //   // Get single data and save in var
-      //   $row = $this->db->single();
-
-      //   // Check for row with data
-      //   if ($this->db->rowCount() > 0) {
-      //     // data is found 
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // }
-
-      // Find parking by key id
-      // public function findParkingByKeyId($key_id) {
-      
-      //   $this->db->query('SELECT * FROM parkings WHERE key_id = :key_id');
-      //   // Bind methodinput from controller, to named parameter from SQL query
-      //   $this->db->bind(':key_id', $key_id);
-
-      //   // Get single data and save in var
-      //   $row = $this->db->single();
-
-      //   // Check for row with data
-      //   if ($this->db->rowCount() > 0) {
-      //     // data is found 
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // }
-
-       // Find parking by key id
-      //  public function checkContractKeyPair($contract_id, $key_id) {
-      
-      //   $this->db->query('SELECT * FROM parkings WHERE contract_id = :contract_id AND key_id = :key_id');
-      //   // Bind methodinput from controller, to named parameter from SQL query
-      //   $this->db->bind(':contract_id', $contract_id);
-      //   $this->db->bind(':key_id', $key_id);
-
-      //   // Get single data and save in var
-      //   $row = $this->db->single();
-
-      //   // Check for row with data
-      //   if ($this->db->rowCount() > 0) {
-      //     // data is found 
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // }
-
-  
-    // public function addParking($data){
-
-
-    //   // Create db query to push data to db, using named params
-    //   $this->db->query('UPDATE parkings SET user_id = :user_id WHERE contract_id = :contract_id AND key_id = :key_id');
-
-    //   // Bind values 
-    //   $this->db->bind(':user_id', $data['user_id']);
-    //   $this->db->bind(':contract_id', $data['contract_id']);
-    //   $this->db->bind(':key_id', $data['key_id']);
-
-    //   // INSERT, UPDATE, DELETE - operations needs to call execute method from db library
-    //   // Execute
-    //   if ($this->db->execute()) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
-
-
     public function addShare($data){
-
-      // die(var_dump($this->getParkingById($data['parking_id'])->name));
-
-
       // Create db query to push data to db, using named params
       $this->db->query('INSERT INTO shares (share_start, share_end, amount_days, credit_item, parking_id, user_id) VALUES (:share_start, :share_end, :amount_days, :credit_item , :parking_id, :user_id)');
       
@@ -211,7 +102,6 @@
       $this->db->bind(':credit_item', $creditItem);
       $this->db->bind(':user_id', $data['user_id']);
 
-      // INSERT, UPDATE, DELETE - operations needs to call execute method from db library
       // Execute
       if ($this->db->execute()) {
         return true;
@@ -222,7 +112,6 @@
 
     public function updateShare($sharesToUpdate) {
       
-    //  die(var_dump($sharesToUpdate));
       $shares = array();
       foreach ($sharesToUpdate as $shareDate) {
         if($this->getShareByDate($shareDate)) {
@@ -259,7 +148,6 @@
       // Bind values 
       $this->db->bind(':id', $share_id);
     
-      // INSERT, UPDATE, DELETE - operations needs to call execute method from db library
       // Execute
       if ($this->db->execute()) {
         return true;
@@ -268,123 +156,13 @@
       }
     }
 
-
-
-    // public function shareStartExists($parking_id, $date) {
-    //   // 1. Getting input Data and convert and format to DateTIme
-    //   $shareToCompare = new DateTime($date);
-    
-    //   // 2. Getting all upcoming shares, related to this parking
-    //   $shares = $this->getShares($parking_id);
-      
-    //   // 3. Create empty Array to store DatePeriodObjects
-    //   $sharePeriods = [];
-
-    //   // 4. Create DatePeriod for each parking related share and store it in array
-    //   foreach ($shares as $share) {
-
-    //     // Formatting string into datetime
-    //     $dateInterval = new DateInterval('P1D'); 
-    //     $shareStart = new DateTime($share->share_start);
-    //     $shareEnd = new DateTime($share->share_end);
-    //     // Get Enddate
-    //     $shareEnd = $shareEnd->modify('+1 day');
-        
-    //     $sharePeriod = new DatePeriod($shareStart, $dateInterval, $shareEnd);
-
-    //     array_push($sharePeriods, $sharePeriod);
-    //   }
-
-    //   $sharePeriodDates = [];
-    //   // die(var_dump($sharePeriods));
-    //   // Loop through each sharePeriod in shareperiods
-
-    //   $shareStartExists = false;
-
-    //   foreach ($sharePeriods as $sharePeriod) {
-    //     // For each date in shareperiod and clook for match with input date
-    //     foreach ($sharePeriod as $date) {
-    //       // array_push($sharePeriodDates, $date->format('Ymd'));  
-    //       // die($date->format('Ymd'));
-  
-    //       if ($shareToCompare->format('Ymd') == $date->format('Ymd')) {
-
-    //         die('LOOOOL');
-
-    //         $shareStartExists = true;
-
-    //       } 
-        
-
-    //     }
-
-    //   }
-
-    //   return $shareStartExists;
-
-    // }
-
-    // public function shareEndExists($parking_id, $date) {
-    //   // 1. Getting input Data and convert and format to DateTIme
-    //   $shareToCompare = new DateTime($date);
-    
-    //   // 2. Getting all upcoming shares, related to this parking
-    //   $shares = $this->getShares($parking_id);
-      
-    //   // 3. Create empty Array to store DatePeriodObjects
-    //   $sharePeriods = [];
-
-    //   // 4. Create DatePeriod for each parking related share and store it in array
-    //   foreach ($shares as $share) {
-
-    //     // Formatting string into datetime
-    //     $dateInterval = new DateInterval('P1D'); 
-    //     $shareStart = new DateTime($share->share_start);
-    //     $shareEnd = new DateTime($share->share_end);
-    //     // Get Enddate
-    //     $shareEnd = $shareEnd->modify('+1 day');
-        
-    //     $sharePeriod = new DatePeriod($shareStart, $dateInterval, $shareEnd);
-
-    //     array_push($sharePeriods, $sharePeriod);
-    //   }
-
-    //   $sharePeriodDates = [];
-
-    //   $shareEndExists = false;
-
-    //   // die(var_dump($sharePeriods));
-    //   // Loop through each sharePeriod in shareperiods
-    //   foreach ($sharePeriods as $sharePeriod) {
-    //     // For each date in shareperiod and clook for match with input date
-    //     foreach ($sharePeriod as $date) {
-    //       // array_push($sharePeriodDates, $date->format('Ymd'));  
-    //       // die($date->format('Ymd'));
-  
-    //       if ($shareToCompare->format('Ymd') == $date->format('Ymd')) {
-
-    //         // die('LOOOOL');
-
-    //         $shareEndExists = true;
-
-    //       } else {
-            
-    //       }
-
-    //     }
-
-    //   }
-
-    //   return $shareEndExists;
-
-    // }
-
     public function shareExists($parking_id, $data) {
 
       $dateInterval = new DateInterval('P1D'); 
       
       $inputStart = new DateTime($data['share_start']);
       $inputEnd = new DateTime($data['share_end']);
+
       // Add One Day for correct DatePeriod Conversion
       $inputEnd = $inputEnd->modify('+1 day');
 
@@ -397,13 +175,13 @@
         array_push($inputPeriodDates, $inputPeriodDate->format('Ymd'));
       }
 
-      // 2. Getting all upcoming shares, related to this parking
+      // Getting all upcoming shares, related to this parking
       $shares = $this->getShares($parking_id);
       
-      // 3. Create empty Array to store DatePeriodObjects
+      // Create empty Array to store DatePeriodObjects
       $sharePeriods = [];
 
-      // 4. Create DatePeriod for each parking related share and store it in array
+      // Create DatePeriod for each parking related share and store it in array
       foreach ($shares as $share) {
 
         // Formatting string into datetime
@@ -422,7 +200,7 @@
 
       // Loop through each sharePeriod in shareperiods
       foreach ($sharePeriods as $sharePeriod) {
-        // For each date in shareperiod and clook for match with input date
+        // For each date in shareperiod and look for match with input date
         foreach ($sharePeriod as $date) {
           // array_push($sharePeriodDates, $date->format('Ymd'));  
           // die($date->format('Ymd'));
@@ -440,15 +218,15 @@
     }
 
     public function getSharesJSONString($parking_id) {
-         // 2. Getting all upcoming shares, related to this parking
+         // Getting all upcoming shares, related to this parking
          $shares = $this->getShares($parking_id);
       
          $dateInterval = new DateInterval('P1D'); 
 
-         // 3. Create empty Array to store DatePeriodObjects
+         // Create empty Array to store DatePeriodObjects
          $sharePeriods = [];
    
-         // 4. Create DatePeriod for each parking related share and store it in array
+         // Create DatePeriod for each parking related share and store it in array
          foreach ($shares as $share) {
    
            // Formatting string into datetime
@@ -485,6 +263,8 @@
 
           return $sharePeriodDatesJSON;
     }
+
+   
 
     public function sendUserMail($data, $action) {
     
@@ -536,6 +316,27 @@
         return $mail->ErrorInfo;
       }
     }
+
+      // public function CSVDump(){
+      
+    //   $this->db->query('SELECT * FROM shares');
+    //   $results = $this->db->resultSet();
+
+    //   $allData = "";
+    //   foreach ($results as $shareObject) {
+    //     $allData .= $shareObject->id . ',' . $shareObject->share_start . ',' . $shareObject->share_end . "\n";
+    //   }
+
+    //   $response = "data:text/csv;charset=utf-8,id,share_start,share_end\n";
+    //   $response .= $allData;
+
+    //   // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
+
+    //   $handle = fopen('internData.csv', 'w');
+    //   fwrite($handle, $response);
+    //   fclose($handle);
+       
+    // }
   }
 
 
