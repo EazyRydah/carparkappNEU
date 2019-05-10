@@ -11,12 +11,10 @@ class Core
   protected $params = [];
 
   public function __construct(){
-    // print_r($this->getUrl());
 
     $url = $this->getUrl();
 
     // Look in Controllers for first value
-
     // .htaccess routes everything through index.php
     if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
       // If exists, set as controller

@@ -3,20 +3,17 @@
 class Shares extends Controller {
 
   public function __construct(){
-    // If not logged id
+
+    // If NOT logged id
     if(!isLoggedIn()){
       redirect('users/login');
     }
 
     if(isAdmin()){
-      // die(isAdmin());
       redirect('exports');
     }
 
-
-  // Check models folder for file called Share.php
   $this->shareModel = $this->model('Share');
-
   }
 
   public function index(){
@@ -29,15 +26,13 @@ class Shares extends Controller {
       'parkings' => $parkings
     ];
 
-    // die(print_r($data));
     $this->view('parkings/index', $data);
   }
 
   public function add($parking_id){
-    // TODOOOO
 
-    // die($parking_id);
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
       // Sanitize POST array
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
   
@@ -46,12 +41,9 @@ class Shares extends Controller {
         'share_start' => trim($_POST['share_start']),
         'share_end' => trim($_POST['share_end']),
         'user_id' => $_SESSION['user_id'],
-      // parking / contract_id needed to store in share table?
         'share_start_err' => '',
         'share_end_err' => ''
       ];
-
-      // die(var_dump($data));
 
       // Validate Input
       if (empty($data['share_start'])) {
@@ -69,14 +61,7 @@ class Shares extends Controller {
         // If Array is false means its empty continue and Add share input Data to database
         if (!$this->shareModel->shareExists($parking_id, $data)) {
 
-          // VIEW MODAL 
-          // die('LOL');
-
-          
-
             if($this->shareModel->addShare($data)) {
-              // die(var_dump($data));
-              // $this->shareModel->CSVDump();
               $this->shareModel->sendUserMail($data, "add");
               flash('parking_message','Share Added');
               redirect('parkings');
@@ -85,8 +70,6 @@ class Shares extends Controller {
             }else {
               die('something went wrong');
             }
-        
-          
         
         } else {
 
@@ -98,7 +81,6 @@ class Shares extends Controller {
             $this->shareModel->sendUserMail($data, "add");
             flash('parking_message','Share Updated');
             redirect('parkings');
-            // Set function to end, to enhance UX
            
           } else {
             die('something went wrong');
@@ -113,16 +95,8 @@ class Shares extends Controller {
 
         $this->view('shares/add', $data);
       }
-
-      // die(print_r($data));
      
     } else {
-      // die('lol');
-
-    // Put db data from model into array, to make it accessable in index view
-    // Get exisitng parking from Model
-
-    // $parking = $this->parkingModel->getParkings()
 
     $parking = $this->shareModel->getParkingById($parking_id);
 
@@ -142,7 +116,6 @@ class Shares extends Controller {
   }
   
   public function show($parking_id){
-    // $parkings = $this->parkingModel->getParkings($_SESSION['user_id']);
 
     $share = $this->shareModel->getShareByParkingId($parking_id);
 
@@ -152,7 +125,6 @@ class Shares extends Controller {
 
     $shares = $this->shareModel->getShares($parking_id);
     
-    // create todays date, to compare existing shares and display correctly
     $timestamp = strtotime('+2 Days');
     $todayCompare = date('Y-m-d',$timestamp);
    
@@ -172,9 +144,6 @@ class Shares extends Controller {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $share = $this->shareModel->getShareByShareId($share_id);
-      
-      // die(var_dump($share->share_start));
-      // die($share->user_id);
 
       if ($share->user_id != $_SESSION['user_id']) {
         // die('redirected!');
@@ -183,22 +152,11 @@ class Shares extends Controller {
       {
 
         if ($this->shareModel->removeShare($share_id)) {
-  
-          // die(var_dump($share)); 
-          // $share = $this->shareModel->getShareByShareId($share_id);
-          
-          // TOODOOO - Maybe convert $shareobject into array first - but makes not really sense...hmmm - why the heck is email function not working with share
+        
           $this->shareModel->sendUserMail($share, "remove");
 
           flash('parking_message', 'Share removed');
-          // $this->view('parkings/show');
-          // die($share_id);
-          // die(var_dump());
           redirect('shares/show/' . $share->parking_id);
-          // die(var_dump($share));
-        
-
-          // die('lol');
   
         } else {
           die('Something went wrong');
@@ -211,7 +169,6 @@ class Shares extends Controller {
     }
   }
 
-   // Wie kann ich dieser funktion die parkingid zukommen lassen?
    public function loadAjaxData($parking_id) {
 
     echo $this->shareModel->getSharesJSONString($parking_id);
@@ -222,7 +179,5 @@ class Shares extends Controller {
     echo $this->shareModel->getSharesByParkingIdJSON($parking_id);
 
   }
-
- 
 
 }

@@ -4,18 +4,14 @@
     
     private $db;
 
-    // Email Addon
-    // private $mail;
-
     public function __construct(){
       $this->db = new Database;
-      // $this->mail = new PHPMailer;
     }
 
-    // Modelmethods are accessable in Controller!
     public function getParkings($user_id){
       $this->db->query('SELECT * FROM parkings WHERE user_id = :user_id');
       $this->db->bind(':user_id',$user_id);
+
       // Return more than one row of db object array
       $results = $this->db->resultSet();
 
@@ -23,45 +19,26 @@
     }
 
 
-    public function getCSVDumpData(){
-      //
-      // Contract_id (Gutschrift zuweisen)
-      // user_email
-      // Key_id (Karte sperren/freigeben)
-      // Share_start
-      // share_end
-      // Credit_item
-      // Amount_days
-
+    // public function CSVDump(){
       
+    //   $this->db->query('SELECT * FROM shares');
+    //   $results = $this->db->resultSet();
 
+    //   $allData = "";
+    //   foreach ($results as $shareObject) {
+    //     $allData .= $shareObject->id . ',' . $shareObject->share_start . ',' . $shareObject->share_end . "\n";
+    //   }
 
-    }
+    //   $response = "data:text/csv;charset=utf-8,id,share_start,share_end\n";
+    //   $response .= $allData;
 
+    //   // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
 
-    public function CSVDump(){
-      
-      
-      $this->db->query('SELECT * FROM shares');
-      $results = $this->db->resultSet();
-
-      $allData = "";
-      foreach ($results as $shareObject) {
-        $allData .= $shareObject->id . ',' . $shareObject->share_start . ',' . $shareObject->share_end . "\n";
-      }
-
-      $response = "data:text/csv;charset=utf-8,id,share_start,share_end\n";
-      $response .= $allData;
-
-      // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
-
-      // die($echo);
-
-      $handle = fopen('internData.csv', 'w');
-      fwrite($handle, $response);
-      fclose($handle);
+    //   $handle = fopen('internData.csv', 'w');
+    //   fwrite($handle, $response);
+    //   fclose($handle);
        
-    }
+    // }
 
 
     public function getParkingById($parking_id) {

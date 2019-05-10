@@ -5,22 +5,10 @@ class Pages extends Controller{
   }
 
   public function index() {
-
-    // Redirect to parkings overview if is logged in
-    // if (isLoggedIn() && IsAdmin()) {
-    //   redirect('exports');
-    // }
-
    
     if(isLoggedIn()) {
       redirect('parkings');
     }
-
-    // if(isAdmin()){
-    //   // die(isAdmin());
-    //   redirect('exports');
-    // }
-
 
     $data = [
       'title' => 'CarparkApp', 

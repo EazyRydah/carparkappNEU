@@ -19,7 +19,6 @@ class User {
     $this->db->bind(':email', $data['email']);
     $this->db->bind(':password', $data['password']);
 
-    // INSERT, UPDATE, DELETE - operations needs to call execute method from db library
     // Execute
     if ($this->db->execute()) {
       return true;
@@ -36,7 +35,6 @@ class User {
     $this->db->bind(':email', $email);
 
     $row = $this->db->single();
-    // die(var_dump($row));
     $hashed_password = $row->password;
 
     if (password_verify($password,$hashed_password)) {

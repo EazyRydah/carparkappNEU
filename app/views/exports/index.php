@@ -22,10 +22,11 @@
             </div>
           </div>
           <select class="form-control" id="select-export-profile">
-            <option value="">-</option>
+            <option value="-">-</option>
             <option value="Parking Service">Parking Service</option>
             <option value="Customer Service">Customer Service</option>
           </select>
+          <p id="demo"></p>
       </div>
 
         <div class="input-group">

@@ -35,7 +35,6 @@ class Users extends Controller {
       ];
 
       // VALIDATION
-
       // if submitted but email is empty, ouput error
       if (empty($data['name'])) {
         $data['name_err'] = 'Please enter your full name';
@@ -67,7 +66,6 @@ class Users extends Controller {
 
       // Make sure errors are emtpy
       if (empty($data['name_err']) && empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
-        // die('SUCCESS');
 
         // Hash password, before storing in db
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -90,9 +88,6 @@ class Users extends Controller {
 
     } else {
 
-      // Init Data before loading view
-      // So If there is input error, data could remain in form
-      // No total retyping/refilling nessessary
       $data = [
         'name' => '',
         'email' => '',
@@ -146,8 +141,6 @@ class Users extends Controller {
       if (empty($data['password'])) {
         $data['password_err'] = 'Please enter password';
       } 
-
-      
 
       // Make sure errors are emtpy
       if (empty($data['email_err']) && empty($data['password_err'])) {

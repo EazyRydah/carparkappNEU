@@ -50,7 +50,7 @@
         $response = "data:text/csv;charset=utf-8,contract_id,credit_item,amount_days\n";
         $response .= $allItems;
         
-        $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
+        // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
 
 
         return $response;
@@ -69,7 +69,7 @@
         $response = "data:text/csv;charset=utf-8,contract_id,credit_item,amount_days\n";
         $response .= $allItems;
   
-        $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
+        // $echo = '<a href="'.$response.'" download="testTable.csv">Download</a>';
 
         return $response;
        

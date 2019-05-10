@@ -45,13 +45,6 @@
 }
 
   function calculateTimestampDifference($timestamp2, $timestamp1){
-    // return date('d', strtotime($timestamp2) - strtotime($timestamp1));
     return abs (strtotime($timestamp2) - strtotime($timestamp1)) / 86400;
   }
 
-  // function calculateCreditItem($amountDays, $creditItemPerDay) {
-    
-  //   $result = floatval($amountDays) * $creditItemPerDay;
-    
-  //   return $result;
-  // }
