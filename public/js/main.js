@@ -1,9 +1,6 @@
 
 //  console.log(export_profile);
 
-
-
-
 var shareDatesStrings = [];
 var shareDatesObjects = [];
 var sharePeriods = [];
@@ -12,9 +9,6 @@ var dates = [];
 
  var parking_id = document.querySelector('#datepicker_parking_id').value;
 
-
- 
- 
  document.addEventListener("DOMContentLoaded", function(e) {
 
     // Get ServerDataJSONString using Fetch API
@@ -40,8 +34,6 @@ var dates = [];
       });
       
 });
-
-
 
 
 
@@ -153,9 +145,6 @@ $( function() {
   function calculateDiffInDays (shareStart = "", shareEnd=""){
     
     if (shareStart != "" && shareEnd != "") {
-
-    // One Day in ms
-    // var oneDay = 1000*60*60*24;  
 
     // Convert both string to Date in milliseconds
     shareStart = Date.parse(shareStart);

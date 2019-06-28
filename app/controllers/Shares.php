@@ -92,7 +92,6 @@ class Shares extends Controller {
 
       } else {
         // Load view with errors
-
         $this->view('shares/add', $data);
       }
      
