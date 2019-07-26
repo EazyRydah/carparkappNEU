@@ -4,7 +4,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'Sierra123');
-define('DB_NAME', 'carparkappNEU');
+define('DB_NAME', 'datenbankBPA');
 
 // App Root
 define('APPROOT', dirname(dirname(__FILE__)));
